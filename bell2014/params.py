@@ -245,7 +245,7 @@ class IntrinsicParameters():
     def from_dict(d):
         """ Load paramers from a dictionary """
         ret = IntrinsicParameters()
-        for k, v in d.iteritems():
+        for k, v in d.items():
             if not k.startswith('_') and k not in IntrinsicParameters.ALL_PARAMS:
                 raise ValueError("Invalid parameter: %s" % k)
             setattr(ret, k, d[k])

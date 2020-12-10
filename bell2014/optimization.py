@@ -34,7 +34,7 @@ def minimize_l1(A_data, A_rows, A_cols, A_shape, b, x0=None,
     prev_x = x
     prev_mean_error = float('inf')
 
-    for i in xrange(max_iters):
+    for i in range(max_iters):
         error = np.abs(A.dot(x) - b)
         mean_error = np.mean(error)
 

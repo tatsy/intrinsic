@@ -1,0 +1,10 @@
+name: intrinsic
+dependencies:
+  - python
+  - numpy
+  - scipy
+  - cython
+  - scikit-image
+  - scikit-learn
+  - pillow
+

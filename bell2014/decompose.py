@@ -1,5 +1,4 @@
-#!/usr/bin/env python2.7
-
+from __future__ import print_function
 import os
 import sys
 import argparse
@@ -10,13 +9,13 @@ if __name__ == '__main__' and __package__ is None:
 try:
     from bell2014.krahenbuhl2013.krahenbuhl2013 import DenseCRF
 except ImportError:
-    print ""
-    print "Error: cannot import 'bell2014.krahenbuhl2013'."
-    print ""
-    print "This is a custom C++ extension and can be compiled with:"
-    print ""
-    print "    cd %s" % os.path.join(os.path.dirname(os.path.abspath(__file__)), 'krahenbuhl2013')
-    print "    make"
+    print("")
+    print("Error: cannot import 'bell2014.krahenbuhl2013'.")
+    print("")
+    print("This is a custom C++ extension and can be compiled with:")
+    print("")
+    print("    cd %s" % os.path.join(os.path.dirname(os.path.abspath(__file__)), 'krahenbuhl2013'))
+    print("    make")
     sys.exit(1)
 
 from bell2014.solver import IntrinsicSolver
@@ -92,14 +91,14 @@ if __name__ == '__main__':
     if not s_filename.endswith('.png'):
         s_filename += '.png'
 
-    print 'Input:'
-    print '  image_filename:', image_filename
-    print '  mask_filename:', mask_filename
-    print '  judgements_filename:', judgements_filename
-    print '  parameters_filename:', parameters_filename
-    print 'Output:'
-    print '  r_filename:', r_filename
-    print '  s_filename:', s_filename
+    print('Input:')
+    print('  image_filename:', image_filename)
+    print('  mask_filename:', mask_filename)
+    print('  judgements_filename:', judgements_filename)
+    print('  parameters_filename:', parameters_filename)
+    print('Output:')
+    print('  r_filename:', r_filename)
+    print('  s_filename:', s_filename)
 
     # load input
     input = IntrinsicInput.from_file(
@@ -134,4 +133,5 @@ if __name__ == '__main__':
 
     # compute error
     if judgements_filename:
-        print 'WHDR: %.1f%%' % (input.compute_whdr(r) * 100.0)
+        print('WHDR: %.1f%%' % (input.compute_whdr(r) * 100.0))
+

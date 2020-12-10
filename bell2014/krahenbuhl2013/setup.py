@@ -1,10 +1,12 @@
+from __future__ import print_function
 from distutils.core import setup
 from distutils.extension import Extension
+
 try:
     from Cython.Build import cythonize
     import numpy
 except ImportError:
-    print "You must have Cython >=0.17 and NumPy to build!"
+    print("You must have Cython >=0.17 and NumPy to build!")
     import sys
     sys.exit(1)
 

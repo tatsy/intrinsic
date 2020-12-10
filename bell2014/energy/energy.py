@@ -80,7 +80,7 @@ class IntrinsicEnergy(object):
                 decomposition.get_reflectances_rgb(), 1e-5, np.inf)
 
         # shading and chromaticity terms
-        for i in xrange(nlabels):
+        for i in range(nlabels):
             s_nz = self.input.image_gray_nz / intensities[i]
             r_nz = (self.input.image_rgb_nz /
                     np.clip(s_nz, 1e-4, 1e5)[:, np.newaxis])
@@ -159,8 +159,8 @@ class IntrinsicEnergy(object):
             if self.params.pairwise_intensity_log:
                 R = np.log(np.clip(R, 1e-5, np.inf))
             binary_costs = np.zeros((nlabels, nlabels), dtype=np.float32)
-            for i in xrange(nlabels):
-                for j in xrange(i):
+            for i in range(nlabels):
+                for j in range(i):
                     cost = np.sum(np.abs(R[i, :] - R[j, :]))
                     binary_costs[i, j] = cost
                     binary_costs[j, i] = cost

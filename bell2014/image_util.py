@@ -1,8 +1,8 @@
 import os
 import numpy as np
-from scipy.misc import imread, imsave
+from PIL import Image
 from scipy.ndimage import gaussian_filter
-from skimage.filter import denoise_bilateral
+from skimage.restoration import denoise_bilateral
 
 # relative luminance for sRGB:
 RGB_TO_Y = np.array([0.2126, 0.7152, 0.0722])
@@ -11,7 +11,8 @@ RGB_TO_Y = np.array([0.2126, 0.7152, 0.0722])
 def load(filename, is_srgb=True):
     if not filename:
         raise ValueError("Empty filename")
-    image = imread(filename).astype(np.float) / 255.0
+    image = Image.open(filename)
+    image = np.asarray(image, dtype='float32') / 255.0
     if is_srgb:
         return srgb_to_rgb(image)
     else:
@@ -21,7 +22,9 @@ def load(filename, is_srgb=True):
 def load_mask(filename):
     if not filename:
         raise ValueError("Empty filename")
-    image = imread(filename)
+
+    image = Image.open(filename)
+    image = np.asarray(image, dtype='uint8')
     if image.ndim == 2:
         return (image >= 128)
     elif image.ndim == 3:
@@ -53,7 +56,8 @@ def save(filename, image, mask_nz=None, rescale=False, srgb=True):
     assert not np.isnan(image2).any()
     image2[image2 > 255] = 255
     image2[image2 < 0] = 0
-    imsave(filename, image2.astype(np.uint8))
+    image2 = Image.fromarray(image2.astype('uint8'))
+    image2.save(filename)
 
 
 def gray_to_rgb(gray):
